@@ -113,9 +113,9 @@ private func checkFruitStock(juice: Juice) throws {
 ### 2️⃣
 
 재고수정 화면에서 과일의 데이터를 첫 번째 화면에 가져오는 것까지는 확인을 하였으나, 레이블 텍스트에 반영이 되지 않았었습니다.
-이 부분에 대해 `willAppear`메서드와 `viewDidLoad` 메서드가 호출이 되나 확인을 해보았고 호출이 되지않아 공식문서를 확인해 보니, 화면 
-
-
+이 부분에 대해 `willAppear`메서드와 `viewDidLoad` 메서드가 호출이 되나 확인을 해보았고 호출이 되지않아 공식문서를 확인해 보니, PresentationStyle을 따로 지정해주지 않으면 automatic으로 동작을 하며 이는 pageSheet으로 매핑이 되어(모든 경우는 아니다) 동작한다 나와있었습니다.
+실제로 print(viewController.modalPresentationStyle.rawValue)로 확인을 하였을 때에 pageSheet 원시값이 프린트 되었습니다.
+pageSheet의 동작방식은 높이가 높을 때엔 이전 화면을 전부 덮지 않는 방식으로 동작을 하고 높이가 컴팩트한 경우에는 fullScreen과 동일하게 동작한다 명시는 되어있었으나, 내부적으로는 fullScreen처럼 동작을 하지 않아 willAppear 메서드를 사용하여 재고수정화면에서 이전 화면으로 돌아올 때의 데이터를 화면에 반영시켜 주었습니다.
 
 <br>
 
